@@ -1,0 +1,14 @@
+header{
+    margin-top: 100px;
+    text-align: center;
+}
+h1{
+    font-size: 400%;
+    font-weight: bold;
+}
+main{
+    width: auto;
+    height: 800px;
+    margin: 50px;
+    background-color: rgb(62, 62, 62);
+}

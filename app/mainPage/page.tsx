@@ -1,6 +1,16 @@
+import "./style.css"
+
 export default function mainPage()
 {
     return(
-        <div>Strona Główna</div>
+        <div>
+            <header>
+                <h1>KATEGORIE</h1>
+            </header>
+
+            <main>
+            
+            </main>
+        </div>
     )
 }
