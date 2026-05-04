@@ -10,20 +10,30 @@ export default function mainPage()
         const nowaKategoria = "kategoria" + (kategorie.length + 1);
         setKategorie([...kategorie, nowaKategoria]);
     }
+    // function dodajDoPliku()
+    // {
+        
+    // }   
 
     return(
-        <div>
+        <div id="container">
             <header>
                 <h1>KATEGORIE</h1>
-                <button id="przyciskKategorie" onClick={() => {dodajKategorie()}}>Dodaj Kategorie</button>
             </header>
 
             <main>
-            {
+                {
                 kategorie.map((kat, i) => (
-                    <div key={i}>{kat}</div>
-                ))
-            }
+                    <div id="plusKat" key={i}>{kat}</div>
+                ))                       
+                }
+                <div id="plusKat">
+                    Podaj nazwę kategorii
+                    <br />
+                    <input type="text" />
+                    <br />
+                    <button id="przyciskKategorie" onClick={() => {dodajKategorie()}}>Dodaj Kategorie</button>
+                </div>               
             </main>
         </div>
     )
