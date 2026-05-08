@@ -19,6 +19,23 @@ main{
 #kod{
     border: slategray solid 2px;
     margin: auto;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+}
+#zatwierdzKod{
+    width: 400px;
+    height: 40px;
+    font-size: 110%;
+    background-color: rgb(187, 187, 187);
+}
+#zatwierdzKod:active{
+    background-color: rgb(122, 122, 122);
+    font-size: 120%;
+}
+#zatwierdzKod:after{
+    font-size: 110%;
+    background-color: rgb(187, 187, 187);
 }
 #wpisywanyKod{
     font-size: 280%;

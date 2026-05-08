@@ -14,6 +14,7 @@ export default function Home() {
         <p id="nadKodem">Wklej kod aktywacyjny</p>
         <div id="kod">
           <input type="text" placeholder="XXXX-XXXX" id="wpisywanyKod" maxLength={8}/>
+          <button id="zatwierdzKod">zatwierdź</button>
         </div>
 
       </main>
