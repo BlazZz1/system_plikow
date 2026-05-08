@@ -1,6 +1,8 @@
 "use client";
 import "./style.css"
 import { useState } from "react";
+import mysql from "mysql2/promise";
+import dotenv from "dotenv"
 
 export default function mainPage()
 {
@@ -10,10 +12,10 @@ export default function mainPage()
         const nowaKategoria = "kategoria" + (kategorie.length + 1);
         setKategorie([...kategorie, nowaKategoria]);
     }
-    // function dodajDoPliku()
-    // {
-        
-    // }   
+    function dodajDoPliku()
+    {
+        dotenv.config();
+    }   
 
     return(
         <div id="container">
@@ -22,11 +24,11 @@ export default function mainPage()
             </header>
 
             <main>
-                {
+                {/* {
                 kategorie.map((kat, i) => (
                     <div id="plusKat" key={i}>{kat}</div>
                 ))                       
-                }
+                } */}
                 <div id="plusKat">
                     Podaj nazwę kategorii
                     <br />
