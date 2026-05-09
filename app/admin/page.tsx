@@ -12,9 +12,17 @@ export default function mainPage()
         const nowaKategoria = "kategoria" + (kategorie.length + 1);
         setKategorie([...kategorie, nowaKategoria]);
     }
-    function dodajDoPliku()
+    async function dodajDoPliku()
     {
         dotenv.config();
+
+        const db = await mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME
+        });
+        
     }   
 
     return(
