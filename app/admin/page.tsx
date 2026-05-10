@@ -1,29 +1,21 @@
 "use client";
 import "./style.css"
-import { useState } from "react";
-import mysql from "mysql2/promise";
-import dotenv from "dotenv"
+import { useRef, useState } from "react";
 
 export default function mainPage()
 {
     const [kategorie, setKategorie] = useState<string[]>([]);
+    const nazwaKatRef = useRef<HTMLInputElement>(null);
+    
+    
+
     function dodajKategorie()
     {
-        const nowaKategoria = "kategoria" + (kategorie.length + 1);
-        setKategorie([...kategorie, nowaKategoria]);
-    }
-    async function dodajDoPliku()
-    {
-        dotenv.config();
-
-        const db = await mysql.createConnection({
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-        });
-        
-    }   
+        const nazwaKat = nazwaKatRef.current?.value ?? "";
+        if(!nazwaKat) return; 
+        setKategorie([...kategorie, nazwaKat]);
+        nazwaKatRef.current!.value = "";
+    } 
 
     return(
         <div id="container">
@@ -32,18 +24,19 @@ export default function mainPage()
             </header>
 
             <main>
-                {/* {
-                kategorie.map((kat, i) => (
+                { 
+                 kategorie.map((kat, i) => (
                     <div id="plusKat" key={i}>{kat}</div>
-                ))                       
-                } */}
+                ))    
+                }  
                 <div id="plusKat">
                     Podaj nazwę kategorii
                     <br />
-                    <input type="text" />
+                    <input type="text" ref={nazwaKatRef}/>
                     <br />
                     <button id="przyciskKategorie" onClick={() => {dodajKategorie()}}>Dodaj Kategorie</button>
-                </div>               
+                </div>
+             
             </main>
         </div>
     )
