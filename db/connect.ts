@@ -18,11 +18,11 @@ app.post('/db/dodaj/', async(req, res) =>{
     database: process.env.DB_NAME
     });
 
-    const {link, nazwa} = req.body;
-    await db.query('INSERT INTO pliki(link, nazwa_pliku) VALUES(?, ?)')
+    const {nazwaKat, poziomDostepu} = req.body;
+    await db.query('INSERT INTO kategorie(nazwa_kategorii, poziom_dostepu) VALUES(?, ?)', [nazwaKat, poziomDostepu])
     await db.end()
     
     res.json({success: true})
 })
-app.listen(3001)
+app.listen(3001, () => console.log("backend działa poprawnie"))
 
