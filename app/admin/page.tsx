@@ -1,39 +1,38 @@
-"use client";
+"use client"
+import { json } from "stream/consumers"
 import "./style.css"
-import { useRef, useState } from "react";
+import {useRef, useState } from "react"
+import WyswietlKategorie from "./show"
 
 export default function mainPage()
 {
-    const nazwaKatRef = useRef<HTMLInputElement>(null);
-    const poziomDostepuRef = useRef<HTMLInputElement>(null);
-    
-    const [kategorie, setKategorie] = useState<string[]>([])
+    const nazwaKatRef = useRef<HTMLInputElement>(null)
+    const poziomDostepuRef = useRef<HTMLInputElement>(null)
+    const dynamicURL : string = ""
 
     async function dodajKategorie()
     {
-        const nazwaKat = nazwaKatRef.current?.value ?? "";
-        const dostepKat = nazwaKatRef.current?.value ?? "";
-        if(!nazwaKat && !dostepKat) return; 
+        const nazwaKat = nazwaKatRef.current?.value ?? ""
+        const dostepKat = poziomDostepuRef.current?.value ?? ""
+        if(!nazwaKat && !dostepKat) return
         
         await fetch('http://localhost:3001/db/dodaj/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({nazwaKat: nazwaKat, poziomDostepu: dostepKat})
         })
-        setKategorie([...kategorie, nazwaKat])
     }
-    
+
+
     return(
         <div id="container">
             <header>
                 <h1>KATEGORIE</h1>
             </header>
 
-            <main> 
+            <main>    
                 {
-                kategorie.map((kat, i) => (
-                    <div id="plusKat" key={i}>{kat}</div>
-                ))   
+                    <WyswietlKategorie></WyswietlKategorie>
                 }
                 <div id="plusKat">
                     Podaj nazwę kategorii
