@@ -1,10 +1,9 @@
 "use client"
-import { json } from "stream/consumers"
 import "./style.css"
-import {useRef, useState } from "react"
+import {useRef } from "react"
 import WyswietlKategorie from "./show"
 
-export default function mainPage()
+export default function MainPage()
 {
     const nazwaKatRef = useRef<HTMLInputElement>(null)
     const poziomDostepuRef = useRef<HTMLInputElement>(null)
@@ -14,7 +13,7 @@ export default function mainPage()
     {
         const nazwaKat = nazwaKatRef.current?.value ?? ""
         const dostepKat = poziomDostepuRef.current?.value ?? ""
-        if(!nazwaKat && !dostepKat) return
+        if(!nazwaKat || !dostepKat) return
         
         await fetch('http://localhost:3001/db/dodaj/', {
             method: 'POST',

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 type Kategoria = {
-    id_kategori : number, 
+    id_kategorii : number, 
     nazwa_kategorii : string,
     poziom_dostepu : number
 } 
@@ -11,27 +11,45 @@ export default function WyswietlKategorie(){
    
     const [kategorie, setKategorie] = useState<Kategoria[]>([])
 
+    async function pobierzKategorie() {
+
+    try {
+
+        console.log("start fetch")
+
+        const res = await fetch('http://localhost:3001/db/selectKat')
+
+        console.log("status:", res.status)
+
+        const result = await res.json()
+
+        console.log(result)
+
+        if(result.success) {
+            setKategorie(result.data)
+        }
+
+    } catch(err) {
+
+        console.error("FETCH ERROR:", err)
+    }
+}
     useEffect(() => {
-        fetch('http://localhost:3001/db/selectKat',
-        {
-            method: 'POST' 
-        })
-        .then((res) => res.json()) 
-        .then((result) => {        
-            if (result.success) {
-                setKategorie(result.data);
-            }
-            else{
-                console.log("Błąd pobierania danych")
-            }
-        })
+       pobierzKategorie() 
     }, [])
+
     return(
-        kategorie.map((kat) => (
-            <div id="plusKat" key={kat.id_kategori}>
-                {kat.nazwa_kategorii}
-            </div>
-        ))
+        <>
+            {kategorie.length === 0 ? (
+                <div id="plusKat">Brak kategorii</div>
+            ) : (
+                kategorie.map((kat) => (
+                    <div id="plusKat" key={kat.id_kategorii}>
+                        {kat.nazwa_kategorii}
+                    </div>
+                ))
+            )}
+        </>
     )
 }
 
